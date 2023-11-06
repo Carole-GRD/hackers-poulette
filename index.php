@@ -7,7 +7,14 @@
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" charset="utf-8" />
 </head>
 <body>
-    <h1>Hackers poulette</h1>
-    <img src="assets/images/logos/hackers-poulette-logo.png" alt="Logo de 'Hackers poulette'">
+
+    <div class="logo">
+        <img src="assets/images/logos/hackers-poulette-logo.png" alt="Logo de 'Hackers poulette'">
+    </div>
+    
+
+
+    <?php require 'form.php'; ?>
+    
 </body>
 </html>

@@ -1,0 +1,90 @@
+
+/* Style du formulaire */
+form {
+    position: relative;
+    top: clamp(-125px, -20vw, 0px);
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: $color-white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    /* Style du titre du formulaire : "Contact us" */
+    h1 {
+        text-align: center;
+        color: $color-blue;
+    }
+
+    /* Style des groupes d'entrées */
+    .form-group {
+        margin-bottom: 20px;
+        
+        /* Style des entrées de texte */
+        .input-group {
+            margin-bottom: 15px;
+
+            /* Style des étiquettes */
+            label {
+                display: block;
+                font-weight: bold;
+                color: $color-black;
+                margin-bottom: 5px;
+            }
+
+            /* Style des entrées */
+            input[type="text"],
+            input[type="email"],
+            select,
+            textarea {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid $color-black;
+                border-radius: 5px;
+            }
+
+            /* Style des entrées type radio */
+            .radio-container {
+                display: flex;
+                justify-content: space-between;
+                width: 100px;
+                margin-left: 10px;
+    
+                .radio-group {
+                    display: flex;
+    
+                    label {
+                        font-weight: normal;
+                        margin-bottom: 0;
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+
+        
+    }
+
+    /* Style des boutons */
+    .button-group {
+        text-align: center;
+        
+        button[type="submit"] {
+            background-color: $color-blue;
+            color: $color-white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #085b61;
+        }
+    }
+    
+}
+
+
+

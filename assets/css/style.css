@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
 This file is used to contain all vendor imports.
 */
@@ -341,4 +342,89 @@ Files inside this folder should contain all styles relating to a reusable compon
 /*
 This file is used to contain all component imports.
 Files inside this folder can contain specific element styles and layout. 
-*//*# sourceMappingURL=style.css.map */
+*/
+.logo {
+  position: relative;
+  top: clamp(-75px, -10vw, 0px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(100px, 90vw, 600px);
+}
+.logo img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/* Style du formulaire */
+form {
+  position: relative;
+  top: clamp(-125px, -20vw, 0px);
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #FFF;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* Style du titre du formulaire : "Contact us" */
+  /* Style des groupes d'entrées */
+  /* Style des boutons */
+}
+form h1 {
+  text-align: center;
+  color: #0d8187;
+}
+form .form-group {
+  margin-bottom: 20px;
+  /* Style des entrées de texte */
+}
+form .form-group .input-group {
+  margin-bottom: 15px;
+  /* Style des étiquettes */
+  /* Style des entrées */
+  /* Style des entrées type radio */
+}
+form .form-group .input-group label {
+  display: block;
+  font-weight: bold;
+  color: #303030;
+  margin-bottom: 5px;
+}
+form .form-group .input-group input[type=text],
+form .form-group .input-group input[type=email],
+form .form-group .input-group select,
+form .form-group .input-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #303030;
+  border-radius: 5px;
+}
+form .form-group .input-group .radio-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100px;
+  margin-left: 10px;
+}
+form .form-group .input-group .radio-container .radio-group {
+  display: flex;
+}
+form .form-group .input-group .radio-container .radio-group label {
+  font-weight: normal;
+  margin-bottom: 0;
+  margin-left: 10px;
+}
+form .button-group {
+  text-align: center;
+}
+form .button-group button[type=submit] {
+  background-color: #0d8187;
+  color: #FFF;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+form .button-group button[type=submit]:hover {
+  background-color: #085b61;
+}/*# sourceMappingURL=style.css.map */
