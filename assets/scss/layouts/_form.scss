@@ -1,5 +1,5 @@
 
-/* Style du formulaire */
+// Style du formulaire 
 form {
     position: relative;
     top: clamp(-125px, -20vw, 0px);
@@ -10,21 +10,21 @@ form {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-    /* Style du titre du formulaire : "Contact us" */
+    // Style du titre du formulaire : "Contact us"
     h1 {
         text-align: center;
         color: $color-blue;
     }
 
-    /* Style des groupes d'entrées */
+    // Style des groupes d'entrées 
     .form-group {
         margin-bottom: 20px;
         
-        /* Style des entrées de texte */
+        // Style des entrées de texte
         .input-group {
             margin-bottom: 15px;
 
-            /* Style des étiquettes */
+            // Style des étiquettes
             label {
                 display: block;
                 font-weight: bold;
@@ -32,18 +32,26 @@ form {
                 margin-bottom: 5px;
             }
 
-            /* Style des entrées */
+            // Style des entrées
             input[type="text"],
             input[type="email"],
             select,
             textarea {
                 width: 100%;
                 padding: 10px;
-                border: 1px solid $color-black;
+                border: 1px solid $color-black-transparent;
                 border-radius: 5px;
             }
 
-            /* Style des entrées type radio */
+            // Style des entrées (placeholder)
+            input[type="text"]::placeholder,
+            input[type="email"]::placeholder,
+            select::placeholder,
+            textarea::placeholder {
+                color: $color-black-transparent;
+            }
+
+            // Style des entrées type radio
             .radio-container {
                 display: flex;
                 justify-content: space-between;
@@ -58,14 +66,35 @@ form {
                         margin-bottom: 0;
                         margin-left: 10px;
                     }
+                    input {
+                        accent-color: $color-blue;
+                    }
                 }
             }
-        }
 
-        
+            select {
+                cursor: pointer;
+
+                option.selected {
+                    background-color: $color-black-transparent;
+                    color: $color-white;
+                }
+            }
+
+
+            // Style des entrées lorsqu'elles sont valides
+            input:not([type="radio"]):valid,
+            textarea:valid {
+                border: none;
+                outline: none;
+                // outline: 2px solid $color-blue;
+                color: $color-blue;
+                border-radius: 5px;
+            }
+        }
     }
 
-    /* Style des boutons */
+    // Style des boutons 
     .button-group {
         text-align: center;
         

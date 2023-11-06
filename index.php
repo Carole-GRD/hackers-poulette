@@ -9,12 +9,12 @@
 <body>
 
     <div class="logo">
-        <img src="assets/images/logos/hackers-poulette-logo.png" alt="Logo de 'Hackers poulette'">
+        <img src="assets/img/logos/hackers-poulette-logo.png" alt="Logo of 'Hackers poulette'">
     </div>
     
-
-
     <?php require 'form.php'; ?>
+
+    <script type="module" src="script/script.js"></script>
     
 </body>
 </html>

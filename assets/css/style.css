@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /*
 This file is used to contain all vendor imports.
 */
@@ -356,7 +355,6 @@ Files inside this folder can contain specific element styles and layout.
      object-fit: cover;
 }
 
-/* Style du formulaire */
 form {
   position: relative;
   top: clamp(-125px, -20vw, 0px);
@@ -366,9 +364,6 @@ form {
   background-color: #FFF;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  /* Style du titre du formulaire : "Contact us" */
-  /* Style des groupes d'entrées */
-  /* Style des boutons */
 }
 form h1 {
   text-align: center;
@@ -376,13 +371,9 @@ form h1 {
 }
 form .form-group {
   margin-bottom: 20px;
-  /* Style des entrées de texte */
 }
 form .form-group .input-group {
   margin-bottom: 15px;
-  /* Style des étiquettes */
-  /* Style des entrées */
-  /* Style des entrées type radio */
 }
 form .form-group .input-group label {
   display: block;
@@ -396,8 +387,17 @@ form .form-group .input-group select,
 form .form-group .input-group textarea {
   width: 100%;
   padding: 10px;
-  border: 1px solid #303030;
+  border: 1px solid rgba(48, 48, 48, 0.5411764706);
   border-radius: 5px;
+}
+form .form-group .input-group input[type=text]::-moz-placeholder, form .form-group .input-group input[type=email]::-moz-placeholder, form .form-group .input-group select::-moz-placeholder, form .form-group .input-group textarea::-moz-placeholder {
+  color: rgba(48, 48, 48, 0.5411764706);
+}
+form .form-group .input-group input[type=text]::placeholder,
+form .form-group .input-group input[type=email]::placeholder,
+form .form-group .input-group select::placeholder,
+form .form-group .input-group textarea::placeholder {
+  color: rgba(48, 48, 48, 0.5411764706);
 }
 form .form-group .input-group .radio-container {
   display: flex;
@@ -412,6 +412,23 @@ form .form-group .input-group .radio-container .radio-group label {
   font-weight: normal;
   margin-bottom: 0;
   margin-left: 10px;
+}
+form .form-group .input-group .radio-container .radio-group input {
+  accent-color: #0d8187;
+}
+form .form-group .input-group select {
+  cursor: pointer;
+}
+form .form-group .input-group select option.selected {
+  background-color: rgba(48, 48, 48, 0.5411764706);
+  color: #FFF;
+}
+form .form-group .input-group input:not([type=radio]):valid,
+form .form-group .input-group textarea:valid {
+  border: none;
+  outline: none;
+  color: #0d8187;
+  border-radius: 5px;
 }
 form .button-group {
   text-align: center;
