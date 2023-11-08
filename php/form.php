@@ -127,6 +127,8 @@
 
     // $user = array();
 
+    require 'sanitizeString.php';
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (isset($_POST['firstname']) 
@@ -139,20 +141,12 @@
         ) {
             // we initiate an array that will contain any potential errors.
             $errors = array();
+            // we initiate a variable that will contain the body (for the mail)
             $body = '';
 
             // 1. Sanitisation
-
-            // fonction pour nettoyer les chaînes de caractères
-            function sanitizeString($string) {
-                $trim_string = trim($string);
-                $stripslashes_string = stripslashes($trim_string);
-                $preg_replace_string = preg_replace('/<[^>]*>/', '', $stripslashes_string);
-                $cleaned_string = htmlspecialchars($preg_replace_string, ENT_QUOTES, 'UTF-8');
-                return $cleaned_string;
-            }
-
-            $user['firstname'] = sanitizeString($_POST['firstname']);
+            // pour les "string", j'utilise la fonction "sanitizeString()" du fichier "sanitizeString.php"
+            $user['firstname'] = sanitizeString($_POST['firstname']);  // fonction "sanitizeString()" du fichier "sanitizeString.php"
             $user['lastname'] = sanitizeString($_POST['lastname']);
             $user['gender'] = sanitizeString($_POST['gender']);
             $user['email'] = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);

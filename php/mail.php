@@ -1,27 +1,11 @@
-
-
 <?php
-    // Import PHPMailer classes into the global namespace
-    // These must be at the top of your script, not inside a function
-    require 'vendor/phpmailer/phpmailer/src/Exception.php';
-    require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
-    require 'vendor/phpmailer/phpmailer/src/SMTP.php';
-    require 'vendor/autoload.php';
-    
+
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
-    
-    Dotenv\Dotenv::createImmutable(__DIR__)->load();
-
-    // Dotenv\Dotenv::createUnsafeImmutable(__DIR__)->load();
-
-    echo $_ENV['EMAIL'];
-    
-    // echo $dotenv;
-
 
     $mail = new PHPMailer(true);
+
     try {
         $mail->SMTPDebug = SMTP::DEBUG_SERVER; // for detailed debug output
         $mail->SMTPDebug= false;
@@ -31,14 +15,12 @@
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
-        // $mail->Username = $_ENV['EMAIL']; // YOUR gmail email
-        $mail->Username = 'my Gmail address'; // YOUR gmail email
-        $mail->Password = 'My password';
+        $mail->Username = $_ENV['EMAIL']; 
+        $mail->Password = $_ENV['PASSWORD'];
 
-        $mail->setFrom('my Gmail address', 'Hackers Poulette');
-        $mail->addAddress('my Gmail address', 'Carole Gerard');
+        $mail->setFrom($_ENV['EMAIL'], 'Hackers Poulette');
+        $mail->addAddress($_ENV['EMAIL'], $_ENV['FIRSTNAME'] . $_ENV['LASTNAME']);
 
-        // $mail->Subject = 'Hackers Poulette';
         $mail->Subject = $user['subject'];
         $mail->Body = $body;
 
