@@ -12,7 +12,7 @@
         <img src="assets/img/logos/hackers-poulette-logo.png" alt="Logo of 'Hackers poulette'">
     </div>
     
-    <?php require 'form.php'; ?>
+    <?php require 'php/form.php'; ?>
 
     <script type="module" src="script/script.js"></script>
     

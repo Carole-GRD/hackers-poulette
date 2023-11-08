@@ -1,17 +1,10 @@
 <?php 
-    $user = array();
-    if (!$_SERVER["REQUEST_METHOD"] == "POST") {
-        $user['firstname'] = '';
-        $user['lastname'] = '';
-        $user['gender'] = '';
-        $user['email'] = '';
-        $user['country'] = '';
-        $user['subject'] = '';
-        $user['message'] = '';
-    }
+
+    require 'userArray.php';
+
 ?>
 
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+<form method="post" action="">
     <h1>Contact Us</h1>
     <div class="form-group">
         <div class="input-group">
@@ -146,6 +139,7 @@
         ) {
             // we initiate an array that will contain any potential errors.
             $errors = array();
+            $body = '';
 
             // 1. Sanitisation
 
@@ -182,6 +176,9 @@
             {
                 $errors['firstname'] = 'Enter maximum forty characters !';
             }
+            else {
+                $body = 'Firstname : ' . sanitizeString($_POST['firstname']) . "\n";
+            }
             
             // Validation "lastname"
             if (false === sanitizeString($_POST['lastname'])) 
@@ -196,6 +193,9 @@
             {
                 $errors['lastname'] = 'Enter maximum forty characters !';
             }
+            else {
+                $body .= 'Lastname : ' . sanitizeString($_POST['lastname']) . "\n";
+            }
 
             // Validation "gender"
             if (false === sanitizeString($_POST['gender'])) 
@@ -206,10 +206,16 @@
             {
                 $errors['gender'] = 'Only “Man” or “Woman” values are accepted !';
             }
+            else {
+                $body .= 'Gender : ' . sanitizeString($_POST['gender']) . "\n"; 
+            }
 
             // Validation "email"
             if (false === filter_var($user['email'], FILTER_VALIDATE_EMAIL)) {
                 $errors['email'] = 'This address is invalid.';
+            }
+            else {
+                $body .= 'Email : ' . sanitizeString($_POST['email']) . "\n"; 
             }
             
             // Validation "country"
@@ -225,6 +231,10 @@
             {
                 $errors['country'] = 'Enter maximum forty characters !';
             }
+            else {
+                $body .= 'Country : ' . sanitizeString($_POST['country']) . "\n"; 
+            }
+            
 
             // Validation "subject"
             if (false === sanitizeString($_POST['subject'])) 
@@ -241,6 +251,9 @@
             {
                 $errors['subject'] = 'Only "Learn" or "Teach" or "Computer" values are accepted !';
             }
+            else {
+                $body .= 'Subject : ' . sanitizeString($_POST['subject']) . "\n"; 
+            }
             
             // Validation "message"
             if (false === sanitizeString($_POST['message'])) 
@@ -255,6 +268,9 @@
             {
                 $errors['message'] = 'Enter maximum thousand characters !';
             }
+            else {
+                $body .= 'Message : ' . sanitizeString($_POST['message']) . "\n"; 
+            }
 
 
 
@@ -268,13 +284,20 @@
                 exit;
             }
 
+
+            
             // If we get here, it's because everything's fine, we can record
             // $bdd = new PDO('mysql:host=localhost;dbname=test','root', '');
-            //...
+            // echo $bdd;
+            
 
             // 4. Display the response interface.
 
 
+            // Envoyer un email
+            require 'mail.php';
+
+            
 
             // Si le formulaire est bien soumis... vider les champs
             // $user['firstname'] = '';
@@ -285,6 +308,7 @@
             // $user['subject'] = '';
             // $user['message'] = '';
 
+            echo '<br><br>';
             echo '$user';
             echo '<pre>';
             print_r($user);
