@@ -6,7 +6,8 @@
 
     $mail = new PHPMailer(true);
 
-    try {
+    try 
+    {
         $mail->SMTPDebug = SMTP::DEBUG_SERVER; // for detailed debug output
         $mail->SMTPDebug= false;
         $mail->isSMTP();
@@ -24,9 +25,16 @@
         $mail->Subject = $user['subject'];
         $mail->Body = $body;
 
-        $mail->send();
-        echo "Email message sent.";
-    } catch (Exception $e) {
+        // $mail->send();
+        // echo "Email sent successfully ";
+        
+        if ($mail->send()) {
+            echo "Email sent successfully ";
+        }
+
+    } 
+    catch (Exception $e) 
+    {
         echo "Error in sending email. Mailer Error: {$mail->ErrorInfo}";
 
     }

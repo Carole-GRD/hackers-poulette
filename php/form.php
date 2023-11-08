@@ -1,10 +1,8 @@
 <?php 
-
     require 'userArray.php';
-
 ?>
 
-<form method="post" action="">
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
     <h1>Contact Us</h1>
     <div class="form-group">
         <div class="input-group">
@@ -16,8 +14,8 @@
                 minlength="2" 
                 maxlength="40" 
                 required
-                <?php if(isset($_POST['firstname'])) {
-                    echo 'value="' . $_POST['firstname'] . '"';
+                <?php if(isset($_POST['firstname']) AND !empty($user['firstname'])) {
+                    echo 'value="' .  $user['firstname'] . '"';
                 } ?>
             >
         </div>
@@ -30,8 +28,8 @@
                 minlength="2" 
                 maxlength="40" 
                 required
-                <?php if(isset($_POST['lastname'])) {
-                    echo 'value="' . $_POST['lastname'] . '"';
+                <?php if(isset($user['lastname']) AND !empty($user['lastname'])) {
+                    echo 'value="' . $user['lastname'] . '"';
                 } ?>
             >
         </div>
@@ -44,7 +42,7 @@
                         name="gender" 
                         value="man" 
                         required
-                        <?php if(isset($_POST['gender']) == "man" ) echo 'checked'; ?>>
+                        <?php if( (isset($user['gender']) == "man") AND !empty($user['gender']) ) echo 'checked'; ?>>
                     <label for="man">M</label>
                 </div>
                 <div class="radio-group">
@@ -53,7 +51,7 @@
                         name="gender" 
                         value="woman" 
                         required
-                        <?php if(isset($_POST['gender']) == "woman" ) echo 'checked'; ?>>
+                        <?php if( (isset($user['gender']) == "woman") AND !empty($user['gender']) ) echo 'checked'; ?>>
                     <label for="woman">F</label>
                 </div>
             </div>
@@ -65,10 +63,13 @@
                 name="email" 
                 placeholder="Email" 
                 required
-                <?php if(isset($_POST['email'])) {
-                    echo 'value="' . $_POST['email'] . '"';
+                <?php if(isset($user['email']) AND !empty($user['email'])) {
+                    echo 'value="' . $user['email'] . '"';
                 } ?>
             >
+            <?php if (isset($errors['email']) AND !empty($errors['email'])):    
+                echo '<span>' . $errors['email'] . '</span>'; 
+            endif; ?>
         </div>
         <div class="input-group">
             <label for="country">Country</label>
@@ -79,8 +80,8 @@
                 minlength="2" 
                 maxlength="40" 
                 required
-                <?php if(isset($_POST['country'])) {
-                    echo 'value="' . $_POST['country'] . '"';
+                <?php if(isset($user['country']) AND !empty($user['country'])) {
+                    echo 'value="' . $user['country'] . '"';
                 } ?>
             >
         </div>
@@ -89,7 +90,7 @@
             <select id="subjectSelect" name="subject">
                 <option 
                     value='other'
-                    <?php if(isset($_POST['subject']) == "other" ) echo 'selected'; ?>>
+                    <?php if( (isset($user['subject']) == "other") AND !empty($user['subject']) ) echo 'selected'; ?>>
                     Choose ...
                 </option>
                 <?php $subjects = ['computer','learn','teach']; ?>
@@ -97,7 +98,7 @@
                 <?php foreach ($subjects as $value) { ?>
                     <option 
                         value='<?php echo $value; ?>'
-                        <?php if(isset($_POST['subject']) == $value ) echo 'selected'; ?>>
+                        <?php if( (isset($user['subject']) == $value) AND !empty($user['subject']) ) echo 'selected'; ?>>
                         <?php echo ucfirst($value); ?>
                     </option>
                 <?php } ?>
@@ -113,7 +114,7 @@
                 minlength="2" 
                 maxlength="1000"
                 required
-            ><?php if(isset($_POST['message'])) { echo $_POST['message']; } ?></textarea>
+            ><?php if(isset($user['message']) AND !empty($user['message'])) { echo $_user['message']; } ?></textarea>
         </div>
     </div>
 
@@ -124,8 +125,6 @@
 
 
 <?php
-
-    // $user = array();
 
     require 'sanitizeString.php';
 
@@ -143,6 +142,7 @@
             $errors = array();
             // we initiate a variable that will contain the body (for the mail)
             $body = '';
+
 
             // 1. Sanitisation
             // pour les "string", j'utilise la fonction "sanitizeString()" du fichier "sanitizeString.php"
@@ -267,7 +267,6 @@
             }
 
 
-
             // 3. execution
             if (count($errors) > 0){
                 echo '<br><br>';
@@ -275,33 +274,21 @@
                 echo '<pre>';
                 print_r($errors);
                 echo '</pre>';
-                exit;
+                //exit;
             }
-
 
             
             // If we get here, it's because everything's fine, we can record
             // $bdd = new PDO('mysql:host=localhost;dbname=test','root', '');
-            // echo $bdd;
+            // ...
             
-
             // 4. Display the response interface.
 
 
             // Envoyer un email
             require 'mail.php';
 
-            
-
-            // Si le formulaire est bien soumis... vider les champs
-            // $user['firstname'] = '';
-            // $user['lastname'] = '';
-            // $user['gender'] = '';
-            // $user['email'] = '';
-            // $user['country'] = '';
-            // $user['subject'] = '';
-            // $user['message'] = '';
-
+        
             echo '<br><br>';
             echo '$user';
             echo '<pre>';
